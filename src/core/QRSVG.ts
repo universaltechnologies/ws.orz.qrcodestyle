@@ -7,7 +7,7 @@ import QRCornerDot, { availableCornerDotTypes } from "../figures/cornerDot/QRCor
 import { RequiredOptions } from "./QROptions";
 import gradientTypes from "../constants/gradientTypes";
 import shapeTypes from "../constants/shapeTypes";
-import { DotType, QRCode, FilterFunction, Gradient, Window } from "../types";
+import { DotType, QRCodeMatrix, FilterFunction, Gradient, Window } from "../types";
 import { Image } from "canvas";
 
 const squareMask = [
@@ -39,7 +39,7 @@ export default class QRSVG {
   _cornersSquareClipPath?: SVGElement;
   _cornersDotClipPath?: SVGElement;
   _options: RequiredOptions;
-  _qr?: QRCode;
+  _qr?: QRCodeMatrix;
   _image?: HTMLImageElement | Image;
   _imageUri?: string;
   _instanceId: number;
@@ -76,7 +76,7 @@ export default class QRSVG {
     return this._element;
   }
 
-  async drawQR(qr: QRCode): Promise<void> {
+  async drawQR(qr: QRCodeMatrix): Promise<void> {
     const count = qr.getModuleCount();
     const minSize = Math.min(this._options.width, this._options.height) - this._options.margin * 2;
     const realQRSize = this._options.shape === shapeTypes.circle ? minSize / Math.sqrt(2) : minSize;

@@ -94,18 +94,9 @@ export type TypeNumber =
 
 export type ErrorCorrectionLevel = "L" | "M" | "Q" | "H";
 export type Mode = "Numeric" | "Alphanumeric" | "Byte" | "Kanji";
-export interface QRCode {
-  addData(data: string, mode?: Mode): void;
-  make(): void;
+export interface QRCodeMatrix {
   getModuleCount(): number;
   isDark(row: number, col: number): boolean;
-  createImgTag(cellSize?: number, margin?: number): string;
-  createSvgTag(cellSize?: number, margin?: number): string;
-  createSvgTag(opts?: { cellSize?: number; margin?: number; scalable?: boolean }): string;
-  createDataURL(cellSize?: number, margin?: number): string;
-  createTableTag(cellSize?: number, margin?: number): string;
-  createASCII(cellSize?: number, margin?: number): string;
-  renderTo2dContext(context: CanvasRenderingContext2D, cellSize?: number): void;
 }
 
 export type Options = {

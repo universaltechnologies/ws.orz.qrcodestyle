@@ -1,4 +1,3 @@
-import getMode from "../tools/getMode";
 import mergeDeep from "../tools/merge";
 import downloadURI from "../tools/downloadURI";
 import QRSVG from "./QRSVG";
@@ -6,8 +5,8 @@ import drawTypes from "../constants/drawTypes";
 
 import defaultOptions, { RequiredOptions } from "./QROptions";
 import sanitizeOptions from "../tools/sanitizeOptions";
-import { FileExtension, QRCode, Options, DownloadOptions, ExtensionFunction, Window } from "../types";
-import qrcode from "qrcode-generator";
+import { FileExtension, QRCodeMatrix, Options, DownloadOptions, ExtensionFunction, Window } from "../types";
+import createQRCode from "../tools/createQRCode";
 import getMimeType from "../tools/getMimeType";
 import { Canvas as NodeCanvas, Image } from "canvas";
 
@@ -20,7 +19,7 @@ export default class QRCodeStyling {
   _domCanvas?: HTMLCanvasElement;
   _nodeCanvas?: NodeCanvas;
   _svg?: SVGElement;
-  _qr?: QRCode;
+  _qr?: QRCodeMatrix;
   _extension?: ExtensionFunction;
   _canvasDrawingPromise?: Promise<void>;
   _svgDrawingPromise?: Promise<void>;
@@ -126,9 +125,7 @@ export default class QRCodeStyling {
       return;
     }
 
-    this._qr = qrcode(this._options.qrOptions.typeNumber, this._options.qrOptions.errorCorrectionLevel);
-    this._qr.addData(this._options.data, this._options.qrOptions.mode || getMode(this._options.data));
-    this._qr.make();
+    this._qr = createQRCode(this._options.data, this._options.qrOptions);
 
     if (this._options.type === drawTypes.canvas) {
       this._setupCanvas();

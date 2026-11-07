@@ -1,8 +1,8 @@
 # IDEA
 .idea
 
-# Lib folder
-/lib
+# Source maps are generated during the distribution build and are not required by consumers.
+/lib/**/*.map
 
 # npm modules
 /node_modules

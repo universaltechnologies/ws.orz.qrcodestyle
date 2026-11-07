@@ -11,7 +11,7 @@
     "node": ">=18.18.0"
   },
   "dependencies": {
-    "qrcode-generator": "^1.4.4"
+    "qrcode": "https://github.com/universaltechnologies/ws.orz.qrcode/archive/3848ed2c17de5bcdead487417dbf14c5dd017f8d.tar.gz"
   },
   "devDependencies": {
     "@eslint/js": "^9.12.0",
